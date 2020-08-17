@@ -11,7 +11,7 @@ export function Form({ form }) {
       action={`https://formspree.io/${form.recipient}`}
       method="POST"
     >
-      {form.fields.map(field => {
+      {form.fields.map((field) => {
         if (field.inputType === "textarea") {
           return (
             <FormField key={field.label} wide>
@@ -157,7 +157,7 @@ export const StyledForm = styled.form`
   grid-gap: 1.5rem;
   justify-items: stretch;
 
-  @media (min-width: ${props => props.theme.breakpoints.medium}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.medium}) {
     grid-template-columns: 1fr 1fr;
   }
 `
@@ -169,23 +169,23 @@ export const FormField = styled.div`
     line-height: 2.25rem;
     font-size: 1rem;
     padding: 0 0.625rem;
-    border-radius: ${props => props.theme.radius.small};
+    border-radius: ${(props) => props.theme.radius.small};
     border: none;
     width: 100%;
-    transition: box-shadow 150ms ${props => props.theme.easing};
-    color: ${props => props.theme.color.foreground};
-    background-color: ${props =>
+    transition: box-shadow 150ms ${(props) => props.theme.easing};
+    color: ${(props) => props.theme.color.foreground};
+    background-color: ${(props) =>
       mix(0.95, props.theme.color.background, props.theme.color.foreground)};
 
     &:focus {
       outline: none;
-      box-shadow: 0 0 0 3px ${props => props.theme.color.secondary};
+      box-shadow: 0 0 0 3px ${(props) => props.theme.color.secondary};
     }
 
-    ${props =>
+    ${(props) =>
       props.theme.isDarkMode &&
       css`
-        background-color: ${props => props.theme.color.background};
+        background-color: ${(props) => props.theme.color.background};
       `};
   }
 
@@ -200,10 +200,10 @@ export const FormField = styled.div`
     margin-bottom: 0.25rem;
   }
 
-  ${p =>
+  ${(p) =>
     p.wide &&
     css`
-      @media (min-width: ${props => props.theme.breakpoints.medium}) {
+      @media (min-width: ${(props) => props.theme.breakpoints.medium}) {
         grid-column-start: 1;
         grid-column-end: 3;
       }

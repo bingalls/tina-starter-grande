@@ -1,6 +1,6 @@
-export const removeNull = obj =>
+export const removeNull = (obj) =>
   Object.keys(obj)
-    .filter(k => obj[k] != null) // Remove undef. and null.
+    .filter((k) => obj[k] != null) // Remove undef. and null.
     .reduce(
       (newObj, k) =>
         typeof obj[k] === "object"

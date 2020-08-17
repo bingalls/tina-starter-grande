@@ -14,7 +14,7 @@ export function Content({ data, html }) {
 }
 
 const StyledContent = styled.div`
-  ${props =>
+  ${(props) =>
     props.center &&
     css`
       text-align: center;

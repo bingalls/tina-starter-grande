@@ -86,7 +86,7 @@ function Post(props) {
             <InlineTextField name="rawFrontmatter.title" />
           </h1>
           <hr />
-{/* <InlineWysiwyg name="rawMarkdownBody" format="markdown">
+          {/* <InlineWysiwyg name="rawMarkdownBody" format="markdown">
   <div
     dangerouslySetInnerHTML={{
       __html: data.html,

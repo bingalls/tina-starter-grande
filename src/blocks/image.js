@@ -30,7 +30,7 @@ export const ImageBlock = {
       label: "Image",
       name: "image",
       component: "image",
-      parse: filename => `../images/${filename}`,
+      parse: (filename) => `../images/${filename}`,
       uploadDir: () => `/content/images/`,
       previewSrc: (formValues, fieldProps) => {
         const pathName = fieldProps.input.name.replace("rawJson", "jsonNode")

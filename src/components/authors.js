@@ -1,8 +1,8 @@
 import { useAuthors } from "./useAuthors"
 
 export const ListAuthors = ({ authorIDs }) => {
-  const authors = useAuthors().filter(author =>
-    authorIDs.find(id => id === author.id)
+  const authors = useAuthors().filter((author) =>
+    authorIDs.find((id) => id === author.id)
   )
 
   const authorList = authors.map((author, index) => {
@@ -23,15 +23,13 @@ export const AuthorsForm = {
       label: "Authors",
       name: "rawJson.authors",
       component: "group-list",
-      itemProps: item => ({
+      itemProps: (item) => ({
         key: item.id,
         label: item.name,
       }),
       defaultItem: () => ({
         name: "New Author",
-        id: Math.random()
-          .toString(36)
-          .substr(2, 9),
+        id: Math.random().toString(36).substr(2, 9),
         email: "",
         link: "",
       }),

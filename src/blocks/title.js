@@ -19,7 +19,7 @@ const StyledTitle = styled.h2`
   word-spacing: 1px;
   font-weight: 700;
 
-  ${props =>
+  ${(props) =>
     props.center &&
     css`
       text-align: center;
@@ -29,7 +29,7 @@ const StyledTitle = styled.h2`
 const Hr = styled.hr`
   margin: 2.2rem 0;
 
-  ${props =>
+  ${(props) =>
     props.center &&
     css`
       margin-left: auto;

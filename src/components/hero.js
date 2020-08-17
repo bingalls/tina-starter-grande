@@ -20,9 +20,10 @@ export const Hero = ({ hero }) => {
             {hero.textline && <Textline>{hero.textline}</Textline>}
             {hero.ctas && (
               <Actions>
-                {Object.keys(hero.ctas).map(key => {
+                {Object.keys(hero.ctas).map((key) => {
                   return (
-                    <LinkButton key={key}
+                    <LinkButton
+                      key={key}
                       primary={hero.ctas[key].primary.toString()}
                       to={hero.ctas[key].link}
                     >
@@ -44,13 +45,13 @@ const HeroWrapper = styled.div`
   position: relative;
   flex: 0 0 auto;
   top: 0;
-  padding-top: ${props => props.theme.header.height};
+  padding-top: ${(props) => props.theme.header.height};
   min-height: calc(
-    ${props => props.theme.header.height} +
-      ${props => props.theme.header.height}
+    ${(props) => props.theme.header.height} +
+      ${(props) => props.theme.header.height}
   );
 
-  ${props =>
+  ${(props) =>
     props.theme.hero.parallax &&
     css`
       transform-style: preserve-3d;
@@ -61,7 +62,7 @@ const HeroContent = styled.div`
   display: block;
   padding: 3rem 0;
 
-  ${props =>
+  ${(props) =>
     props.large &&
     css`
       padding: 8rem 0;
@@ -73,9 +74,10 @@ const HeroBackground = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  bottom: -${props => props.theme.hero.overlap};
+  bottom: -${(props) => props.theme.hero.overlap};
   z-index: -1;
-  background-color: ${props => transparentize(0.1, props.theme.color.primary)};
+  background-color: ${(props) =>
+    transparentize(0.1, props.theme.color.primary)};
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -85,7 +87,7 @@ const HeroBackground = styled.div`
     z-index: 1;
   }
 
-  ${props =>
+  ${(props) =>
     props.theme.hero.parallax &&
     css`
       transform-style: preserve-3d;
@@ -96,7 +98,7 @@ const HeroBackground = styled.div`
 export const Headline = styled.h2`
   font-size: 2.6em;
   line-height: 1.2;
-  color: ${props => props.theme.color.white};
+  color: ${(props) => props.theme.color.white};
   word-spacing: 1px;
   font-weight: 700;
   text-transform: none;
@@ -105,7 +107,7 @@ export const Headline = styled.h2`
 export const Textline = styled.p`
   font-size: 1.3rem;
   line-height: 1.2;
-  color: ${props => props.theme.color.secondary};
+  color: ${(props) => props.theme.color.secondary};
   word-spacing: 1px;
   font-weight: 500;
   text-transform: none;

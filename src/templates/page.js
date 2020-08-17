@@ -28,7 +28,8 @@ export default function Page({ data }) {
               case "ContentBlock":
                 if (data.content && page.childrenPagesJsonBlockMarkdown[i])
                   return (
-                    <Content key={i}
+                    <Content
+                      key={i}
                       data={data}
                       html={
                         page.childrenPagesJsonBlockMarkdown[i]

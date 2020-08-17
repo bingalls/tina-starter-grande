@@ -46,7 +46,7 @@ const CreatePostButton = createRemarkButton({
   },
   frontmatter(form) {
     let slug = slugify(form.title.toLowerCase())
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
           title: form.title,
@@ -105,7 +105,7 @@ export const Site = styled.div`
     flex: 1 0 auto;
   }
 
-  ${props =>
+  ${(props) =>
     props.theme.hero.parallax &&
     css`
       height: 100vh;
