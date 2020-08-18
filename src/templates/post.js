@@ -11,6 +11,7 @@ import { EditToggle } from "../components/editToggle"
 import { ListAuthors } from "../components/authors"
 import { Link } from "gatsby"
 import { PageLayout } from "../components/pageLayout"
+import PropTypes from "prop-types"
 import { useLocalRemarkForm, DeleteAction } from "gatsby-tinacms-remark"
 import {
   InlineForm,
@@ -20,6 +21,11 @@ import {
 import { useAuthors } from "../components/useAuthors"
 
 function Post(props) {
+  Post.propTypes = {
+    props: PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
+    markdownRemark: PropTypes.any.isRequired,
+  }
   const authors = useAuthors()
   const page = props.data.markdownRemark
   const formOptions = {
@@ -94,6 +100,7 @@ function Post(props) {
   />
 </InlineWysiwyg> */}
           {data.frontmatter.draft && <DraftBadge>Draft</DraftBadge>}
+          {/* eslint-disable-next-line no-undef */}
           {process.env.NODE_ENV !== "production" && <EditToggle />}
         </Paper>
       </PageLayout>

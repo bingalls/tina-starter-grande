@@ -1,11 +1,16 @@
 import React, { useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { Moon, Sun } from "styled-icons/boxicons-regular"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
-import { mix, transparentize } from "polished"
 import { Link } from "gatsby"
+import { mix, transparentize } from "polished"
+import { Moon, Sun } from "styled-icons/boxicons-regular"
+import { useStaticQuery, graphql } from "gatsby"
 
-export const Nav = ({ toggleDarkMode, isDarkMode }) => {
+export const Nav = ({ toggleDarkMode, isdarkmode }) => {
+  Nav.propTypes = {
+    isdarkmode: PropTypes.bool,
+    toggleDarkMode: PropTypes.func.isRequired,
+  }
   const data = useStaticQuery(graphql`
     query navQuery {
       settingsJson(fileRelativePath: { eq: "/content/settings/menu.json" }) {
@@ -23,12 +28,12 @@ export const Nav = ({ toggleDarkMode, isDarkMode }) => {
 
   return (
     <>
-      <StyledNavbar navopen={navopen.toString()} isdarkmode={isDarkMode}>
+      <StyledNavbar navopen={navopen.toString()} isdarkmode={isdarkmode}>
         {menu.menuItems.map((item) => (
           <NavItem key={item.label}>
             <NavLink
               onClick={togglenavopen}
-              partiallyActive={item.link === "/" ? false : true}
+              partiallyActive={item.link !== "/"}
               to={item.link}
             >
               {item.label}
@@ -39,7 +44,7 @@ export const Nav = ({ toggleDarkMode, isDarkMode }) => {
           <DarkModeToggle
             aria-label="Toggle Dark Theme"
             onClick={toggleDarkMode}
-            isdarkmode={isDarkMode}
+            isdarkmode={isdarkmode}
           />
         </NavItem>
       </StyledNavbar>
@@ -47,7 +52,7 @@ export const Nav = ({ toggleDarkMode, isDarkMode }) => {
         aria-label="Toggle Nav"
         onClick={togglenavopen}
         navopen={navopen.toString()}
-      ></NavToggle>
+      />
     </>
   )
 }
@@ -66,7 +71,7 @@ export const StyledNavbar = styled.ul`
     opacity: 0;
     z-index: 1000;
     background-color: ${(props) =>
-      props.isDarkMode || props.theme.header.transparent
+      props.isdarkmode || props.theme.header.transparent
         ? mix(0.95, props.theme.color.black, props.theme.color.white)
         : mix(0.95, props.theme.color.white, props.theme.color.black)};
     box-shadow: 0 1rem 2rem -0.5rem ${(props) => transparentize(0.5, props.theme.color.black)};
@@ -227,7 +232,7 @@ export const NavLink = styled(({ children, ...styleProps }) => (
 
       &.active {
         color: ${(props) =>
-          props.theme.isDarkMode
+          props.theme.isdarkmode
             ? props.theme.color.foreground
             : props.theme.color.primary} !important;
         &:before {
@@ -342,6 +347,7 @@ export const NavLink = styled(({ children, ...styleProps }) => (
     `}
 `
 
+// eslint-disable-next-line no-unused-vars
 export const NavToggle = styled(({ menuOpen, ...styleProps }) => {
   return (
     <button {...styleProps}>
@@ -460,7 +466,7 @@ export const DarkModeToggle = styled(({ ...styleProps }) => {
   }
 
   ${(props) =>
-    props.theme.isDarkMode &&
+    props.theme.isdarkmode &&
     css`
       svg {
         &:first-child {

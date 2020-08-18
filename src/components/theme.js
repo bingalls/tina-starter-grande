@@ -1,13 +1,17 @@
 import React, { useState } from "react"
+import PropTypes from "prop-types"
+import { createGlobalStyle } from "styled-components"
+import { GlobalStyles, bestContrast } from "./style"
 import { mix } from "polished"
 import { ThemeProvider } from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
-import { GlobalStyles, bestContrast } from "./style"
-import { createGlobalStyle } from "styled-components"
 
 export const ThemeContext = React.createContext()
 
 export const Theme = ({ children }) => {
+  Theme.propTypes = {
+    children: PropTypes.any.isRequired,
+  }
   const data = useStaticQuery(graphql`
     query ThemeQuery {
       settingsJson(fileRelativePath: { eq: "/content/settings/theme.json" }) {
@@ -18,7 +22,7 @@ export const Theme = ({ children }) => {
 
   const isBrowser = typeof window !== "undefined"
   const userPrefDark = isBrowser ? localStorage.getItem("isDarkMode") : false
-  const initialDarkMode = userPrefDark === "true" ? true : false
+  const initialDarkMode = userPrefDark === "true"
 
   const [darkMode, setDarkMode] = useState(initialDarkMode)
 

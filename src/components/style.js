@@ -1,8 +1,9 @@
 import React from "react"
-import styled, { createGlobalStyle, css } from "styled-components"
-import { mix, shade, transparentize, getContrast } from "polished"
 import Img from "gatsby-image"
+import PropTypes from "prop-types"
+import styled, { createGlobalStyle, css } from "styled-components"
 import { Link } from "gatsby"
+import { mix, shade, transparentize, getContrast } from "polished"
 
 export const bestContrast = (baseColor, optionOne, optionTwo) => {
   const contrastOne = getContrast(baseColor, optionOne)
@@ -771,5 +772,9 @@ export const PlainInput = styled.input`
 `
 
 export const PlainText = (props) => {
+  PlainText.propTypes = {
+    props: PropTypes.object.isRequired,
+    input: PropTypes.any.isRequired,
+  }
   return <PlainInput {...props.input} />
 }

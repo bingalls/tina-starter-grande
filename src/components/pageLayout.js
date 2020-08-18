@@ -1,18 +1,23 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { Wrapper, Main } from "./style"
+import PropTypes from "prop-types"
+import { Hero } from "./hero"
+import { NavForm } from "./nav"
+import { removeNull } from "./helpers"
 import { SEO } from "./seo"
 import { ThemeContext } from "./theme"
-import { Hero } from "./hero"
-import { removeNull } from "./helpers"
-import { NavForm } from "./nav"
 import { ThemeForm } from "./theme"
-
 import { useGlobalJsonForm } from "gatsby-tinacms-json"
+import { useStaticQuery, graphql } from "gatsby"
+import { Wrapper, Main } from "./style"
 
+// eslint-disable-next-line no-undef
 const merge = require("lodash.merge")
 
 export const PageLayout = ({ page, children }) => {
+  PageLayout.propTypes = {
+    children: PropTypes.object.isRequired,
+    page: PropTypes.object,
+  }
   const data = useStaticQuery(graphql`
     query PageLayoutQuery {
       nav: settingsJson(

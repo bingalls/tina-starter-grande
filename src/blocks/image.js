@@ -1,9 +1,13 @@
 import React from "react"
-import styled from "styled-components"
-import Img from "gatsby-image"
 import get from "lodash.get"
+import Img from "gatsby-image"
+import PropTypes from "prop-types"
+import styled from "styled-components"
 
 export function Image({ data }) {
+  Image.propTypes = {
+    data: PropTypes.object.isRequired,
+  }
   return (
     data.image &&
     data.image.childImageSharp && (

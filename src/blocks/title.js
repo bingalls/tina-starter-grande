@@ -1,7 +1,12 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 export function Title({ page, data }) {
+  Title.propTypes = {
+    data: PropTypes.object.isRequired,
+    page: PropTypes.object.isRequired,
+  }
   const centered = data.center ? data.center : false
   return (
     <>

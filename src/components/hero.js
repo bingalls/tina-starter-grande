@@ -1,17 +1,19 @@
 import React from "react"
+import BackgroundImage from "gatsby-background-image"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 import { transparentize } from "polished"
-import { Wrapper, Overlay, LinkButton } from "../components/style"
-import BackgroundImage from "gatsby-background-image"
+import { Wrapper, Overlay, LinkButton } from "./style"
 
 export const Hero = ({ hero }) => {
+  Hero.propTypes = {
+    hero: PropTypes.object.isRequired,
+  }
   return (
     <HeroWrapper>
       <HeroBackground>
         {hero.overlay && <Overlay />}
-        {hero.image && (
-          <HeroImage fluid={hero.image.childImageSharp.fluid}></HeroImage>
-        )}
+        {hero.image && <HeroImage fluid={hero.image.childImageSharp.fluid} />}
       </HeroBackground>
       {(hero.headline || hero.textline || hero.ctas) && (
         <HeroContent large={hero.large}>

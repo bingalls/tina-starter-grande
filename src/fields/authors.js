@@ -1,10 +1,16 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
-import { Droppable, Draggable } from "react-beautiful-dnd"
 import { AddIcon, DragIcon, ReorderIcon, TrashIcon } from "@tinacms/icons"
+import { Droppable, Draggable } from "react-beautiful-dnd"
 import { IconButton } from "@tinacms/styles"
 
 export const AuthorsField = (props) => {
+  AuthorsField.propTypes = {
+    field: PropTypes.object.isRequired,
+    form: PropTypes.object.isRequired,
+    input: PropTypes.object.isRequired,
+  }
   const { input, field, form } = props
   const [visible, setVisible] = React.useState(false)
   const authors = field.authors
@@ -49,7 +55,7 @@ export const AuthorsField = (props) => {
         {(provider) => (
           <AuthorList ref={provider.innerRef}>
             {authorIDs.length === 0 && (
-              <EmptyList>There's no authors</EmptyList>
+              <EmptyList>There are no authors</EmptyList>
             )}
             {authorIDs.map((authorID, index) => {
               const author = authors.find((author) => author.id === authorID)
@@ -60,7 +66,7 @@ export const AuthorsField = (props) => {
                   form={form}
                   field={field}
                   index={index}
-                ></AuthorListItem>
+                />
               )
             })}
             {provider.placeholder}
@@ -76,6 +82,12 @@ const AuthorListItem = ({ author, form, field, index }) => {
     form.mutators.remove(field.name, index)
   }, [form, field, index])
 
+  AuthorListItem.propTypes = {
+    author: PropTypes.object.isRequired,
+    field: PropTypes.object.isRequired,
+    form: PropTypes.object.isRequired,
+    index: PropTypes.number.isRequired,
+  }
   return (
     <Draggable
       key={index}

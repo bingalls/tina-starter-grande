@@ -1,16 +1,16 @@
 import React from "react"
-import { Wrapper } from "./style"
-import { Coffee } from "styled-icons/boxicons-regular"
 import styled, { css } from "styled-components"
-import { transparentize } from "polished"
+import { Coffee } from "styled-icons/boxicons-regular"
+import { Link } from "gatsby"
 import { Nav } from "./nav"
 import { ThemeContext } from "./theme"
-import { Link } from "gatsby"
+import { transparentize } from "polished"
+import { Wrapper } from "./style"
 
 export const Header = styled(({ siteTitle, ...styleProps }) => {
   return (
     <ThemeContext.Consumer>
-      {({ toggleDarkMode, isDarkMode, theme }) => (
+      {({ toggleDarkMode, isDarkMode }) => (
         <header {...styleProps}>
           <HeaderWrapper>
             <SiteTitle>
@@ -19,7 +19,7 @@ export const Header = styled(({ siteTitle, ...styleProps }) => {
                 {siteTitle}
               </SiteLink>
             </SiteTitle>
-            <Nav toggleDarkMode={toggleDarkMode} isdarkmode={isDarkMode} />
+            <Nav toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode} />
           </HeaderWrapper>
         </header>
       )}

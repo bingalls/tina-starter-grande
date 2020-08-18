@@ -1,7 +1,12 @@
 import React from "react"
+import PropTypes from "prop-types"
 import styled, { css } from "styled-components"
 
 export function Content({ data, html }) {
+  Content.propTypes = {
+    data: PropTypes.object.isRequired,
+    html: PropTypes.string.isRequired,
+  }
   const centered = data.center ? data.center : false
   return (
     <StyledContent
@@ -9,7 +14,7 @@ export function Content({ data, html }) {
       dangerouslySetInnerHTML={{
         __html: html,
       }}
-    ></StyledContent>
+    />
   )
 }
 

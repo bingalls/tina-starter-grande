@@ -1,15 +1,19 @@
 import React from "react"
-import { graphql } from "gatsby"
-import { Paper } from "../components/style"
-import { Form, FormBlock } from "../blocks/form"
-import { Title, TitleBlock } from "../blocks/title"
-import { Image, ImageBlock } from "../blocks/image"
+import PropTypes from "prop-types"
 import { Content, ContentBlock } from "../blocks/content"
+import { Form, FormBlock } from "../blocks/form"
+import { graphql } from "gatsby"
+import { Image, ImageBlock } from "../blocks/image"
 import { PageLayout } from "../components/pageLayout"
+import { Paper } from "../components/style"
+import { Title, TitleBlock } from "../blocks/title"
 
-import { useLocalJsonForm } from "gatsby-tinacms-json"
+import { useLocalJsonForm } from "gatsby-tinacms-json" // TODO deprecated
 
 export default function Page({ data }) {
+  Page.propTypes = {
+    data: PropTypes.object.isRequired,
+  }
   const [page] = useLocalJsonForm(data.page, PageForm)
   const blocks = page.blocks ? page.blocks : []
 
@@ -77,7 +81,7 @@ const PageForm = {
           component: "image",
           parse: (filename) => `../images/${filename}`,
           uploadDir: () => `/content/images/`,
-          previewSrc: (formValues, input) => {
+          previewSrc: (formValues) => {
             if (!formValues.jsonNode.hero || !formValues.jsonNode.hero.image)
               return ""
             return formValues.jsonNode.hero.image.childImageSharp.fluid.src

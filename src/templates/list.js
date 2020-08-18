@@ -1,7 +1,8 @@
 import React from "react"
-import { graphql } from "gatsby"
+import PropTypes from "prop-types"
 import styled from "styled-components"
-import { useLocalJsonForm } from "gatsby-tinacms-json"
+import { graphql } from "gatsby"
+import { useLocalJsonForm } from "gatsby-tinacms-json" // TODO deprecated
 
 import {
   Paper,
@@ -16,6 +17,10 @@ import { Link } from "gatsby"
 import { PageLayout } from "../components/pageLayout"
 
 export default function List({ data, pageContext }) {
+  List.propTypes = {
+    data: PropTypes.object.isRequired,
+    pageContext: PropTypes.array.isRequired,
+  }
   const [page] = useLocalJsonForm(data.page, ListForm)
   // const [authors] = useLocalJsonForm(data.authors, AuthorsForm)  // currently unused
 

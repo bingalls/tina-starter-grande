@@ -1,17 +1,21 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import styled, { css } from "styled-components"
-import { Header } from "./header"
-import { Footer } from "./footer"
-import { Theme } from "./theme"
 import Helmet from "react-helmet"
+import PropTypes from "prop-types"
 import slugify from "react-slugify"
+import styled, { css } from "styled-components"
+import { Footer } from "./footer"
+import { Header } from "./header"
+import { Theme } from "./theme"
+import { useStaticQuery, graphql } from "gatsby"
 
-import { createRemarkButton } from "gatsby-tinacms-remark"
+import { createRemarkButton } from "gatsby-tinacms-remark" // TODO Deprecated!
 import { JsonCreatorPlugin } from "gatsby-tinacms-json"
 import { withPlugin } from "tinacms"
 
 const MasterLayout = ({ children }) => {
+  MasterLayout.propTypes = {
+    children: PropTypes.any.isRequired,
+  }
   const data = useStaticQuery(graphql`
     query MasterLayoutQuery {
       site: settingsJson(
@@ -25,7 +29,7 @@ const MasterLayout = ({ children }) => {
   return (
     <>
       <Helmet>
-        <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.min.js" />
       </Helmet>
       <Theme>
         <Site>

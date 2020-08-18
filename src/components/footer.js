@@ -1,7 +1,7 @@
 import React from "react"
-import { Wrapper } from "./style"
 import styled from "styled-components"
 import { transparentize } from "polished"
+import { Wrapper } from "./style"
 
 export const Footer = styled(({ ...styleProps }) => {
   return (

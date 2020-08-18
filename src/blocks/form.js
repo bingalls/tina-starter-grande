@@ -1,10 +1,14 @@
 import React from "react"
-import { Button } from "../components/style"
-import styled, { css } from "styled-components"
-import { mix } from "polished"
+import PropTypes from "prop-types"
 import slugify from "react-slugify"
+import styled, { css } from "styled-components"
+import { Button } from "../components/style"
+import { mix } from "polished"
 
 export function Form({ form }) {
+  Form.propTypes = {
+    form: PropTypes.object.isRequired,
+  }
   return (
     <StyledForm
       name="contact"
@@ -21,7 +25,7 @@ export function Form({ form }) {
                 rows="5"
                 name={slugify(field.label)}
                 id={slugify(field.label)}
-              ></textarea>
+              />
             </FormField>
           )
         } else {
